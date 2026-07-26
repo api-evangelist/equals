@@ -1,0 +1,13 @@
+generated: '2026-07-19'
+method: searched
+source: https://status.equals.com
+status_page: https://status.equals.com
+versioning:
+  scheme: none-published
+  note: Equals is a hosted SaaS analytics platform. It publishes a public status page but no public API versioning or deprecation policy; its programmatic surface is the hosted Equals MCP server (mcp/equals-mcp.yml).
+deprecation:
+  policy_url: null
+  sunset_header: null
+sla:
+  url: null
+deprecated_operations: []

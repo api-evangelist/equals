@@ -1,0 +1,90 @@
+# Concepts
+
+## Docs
+
+- [Airtable](https://docs.equals.com/docs/airtable.md): Example Javascript code for importing data from Airtable
+- [ARR Build Daily by Customer](https://docs.equals.com/docs/arr-build-daily-by-customer.md): Understand and use the ARR Build Daily by Customer view
+- [Overview](https://docs.equals.com/docs/arr-build-get-started.md): Put your ARR reporting on autopilot with your Equals ARR Build, workbooks, and dashboards
+- [ARR Build Invoice Items](https://docs.equals.com/docs/arr-build-invoice-items.md): Understand the ARR Build Invoice Items view
+- [Auth0](https://docs.equals.com/docs/auth0.md): Example Javascript code for importing data from Auth0
+- [Auto-expand](https://docs.equals.com/docs/auto-expand.md): Update tables, charts, and pivot tables automatically with each query run
+- [AWS RDS](https://docs.equals.com/docs/aws-rds.md): Connect a Postgres, MySQL, or SQL Server database hosted on AWS
+- [AWS Redshift](https://docs.equals.com/docs/aws-redshift.md): Connect an AWS Redshift warehouse
+- [Azure](https://docs.equals.com/docs/azure-sql-server.md): Connect a SQL Server databased hosted on Azure
+- [BigQuery](https://docs.equals.com/docs/bigquery-connection-guide.md): Connect a Google BigQuery warehouse from Equals
+- [Building and sharing analyses](https://docs.equals.com/docs/building-and-sharing-analyses.md): Create robust analyses that drive action with auto-distributed dashboards.
+- [Calculated columns](https://docs.equals.com/docs/calculated-columns.md): Attach columns to your queried data that expand with each query run
+- [Cell references](https://docs.equals.com/docs/cell-references.md): Modify a SQL query by inputting values in your workbook
+- [Charts](https://docs.equals.com/docs/charts.md): Create professional and modern visualizations of your data
+- [Command bar](https://docs.equals.com/docs/command-bar.md): Save time by accessing all spreadsheet functions from your keyboard
+- [SQL Database Overview](https://docs.equals.com/docs/connecting-sql-databases-to-equals.md): Learn how to find your SQL database connection details and grant Equals access from our IP address
+- [Create and edit dashboards](https://docs.equals.com/docs/create-and-edit-dashboards.md): Build live dashboards with charts, tables, cells, AI Summaries and more
+- [Create views](https://docs.equals.com/docs/create-views.md)
+- [CSV](https://docs.equals.com/docs/csv-files.md): Query from a CSV file in Equals
+- [Dashboard Edit and View modes](https://docs.equals.com/docs/dashboard-edit-and-view-modes.md): A dashboard can be opened in one of two states:
+- [Dashboard filters](https://docs.equals.com/docs/dashboard-filters.md): Use filters to change the data displayed in cells, charts, and tables on a dashboard
+- [Dashboard settings](https://docs.equals.com/docs/dashboard-settings.md): Customize a dashboard's URL and toggle the display of Equals branding in View mode
+- [Overview](https://docs.equals.com/docs/dashboards.md): Instantly turn spreadsheets into dashboards and auto-distribute up-to-date reports – in a few clicks
+- [Data notes & edits](https://docs.equals.com/docs/data-notes-edits.md): Make changes and add notes to queried data that persist after each query run
+- [Data Sync Overview](https://docs.equals.com/docs/data-syncing-overview.md): Get an overview of supported datasources and their configuration within Equals
+- [Date filters](https://docs.equals.com/docs/date-filters.md)
+- [Date matching formulas](https://docs.equals.com/docs/date-matching-formulas.md): Three formulas make date-based comparisons easier and more intuitive. Use , , and  to convert any date value into it’s respective week, month, or year.
+- [Deputy](https://docs.equals.com/docs/deputy.md): Example Javascript code for importing data from Deputy
+- [DigitalOcean](https://docs.equals.com/docs/digitalocean.md): DigitalOcean supports both Postgres and MySQL database types. The instructions for each type are the same. If your database is clustered, you will need to find the specific instance within the cluster you want to connect to.
+- [Drilldowns](https://docs.equals.com/docs/drilldowns.md)
+- [Embed dashboards in Notion and more](https://docs.equals.com/docs/embed-dashboards.md): Share your Equals dashboards in the places where your team works
+- [Equals MCP](https://docs.equals.com/docs/equals-mcp.md)
+- [Datasources FAQ](https://docs.equals.com/docs/faq.md): Learn how we keep your connection details secure and manage data access
+- [Filters and sorts](https://docs.equals.com/docs/filters-and-sorts.md): Filter and sort data in your worksheet.
+- [Folders](https://docs.equals.com/docs/folders-filters.md): Organize workbooks and saved queries with folders
+- [Format text and reference cells](https://docs.equals.com/docs/format-text-and-reference-cells-in-paragraphs.md): Reference cells, format text, and create hyperlinks using Markdown on dashboards
+- [Advanced formula editor](https://docs.equals.com/docs/formula-editor.md): Use a code editor to easily debug formulas
+- [Overview](https://docs.equals.com/docs/getting-started.md): Get a basic understanding of Equals' core concepts and features.
+- [Github](https://docs.equals.com/docs/github.md): Example Javascript code for importing issues from Github
+- [Google Sheets](https://docs.equals.com/docs/google-sheets.md): Connect your Google Sheets to Equals
+- [Overview](https://docs.equals.com/docs/how-to-spreadsheet.md): Best practices for building an analysis in a spreadsheet – for novices and pros.
+- [Google Analytics](https://docs.equals.com/docs/import-from-google-analytics.md): Example Javascript code for importing data from Google Analytics
+- [Intercom](https://docs.equals.com/docs/intercom.md): You can use Import Scripts to import lead or user data from your Intercom account directly into an Equals workbook.
+- [Joins](https://docs.equals.com/docs/joins.md): Join across tables or datasources with or without SQL
+- [Keyboard shortcuts](https://docs.equals.com/docs/keyboard-shortcuts.md): Common keyboard shortcuts supported by Equals
+- [Manage dashboard access and permissions](https://docs.equals.com/docs/manage-dashboard-access-and-permissions.md): Select who can create, edit, and view a dashboard
+- [Manage access to views](https://docs.equals.com/docs/managing-access-to-views.md): Determine who can create, edit, and query a view.
+- [Managing your ARR Build](https://docs.equals.com/docs/managing-your-arr-build.md): Configure and maintain your custom ARR Build
+- [Netsuite](https://docs.equals.com/docs/netsuite.md): Connect your NetSuite instance to Equals
+- [Organizing workbooks for analysis](https://docs.equals.com/docs/organizing-workbooks-for-analysis.md): Structure your spreadsheet tabs to create analyses that are easy to follow and understand.
+- [Pivot tables](https://docs.equals.com/docs/pivot-tables.md): Aggregate data using pivot tables
+- [Plaid](https://docs.equals.com/docs/plaid.md): Connect your company's bank account to Equals via Plaid
+- [PlanetScale](https://docs.equals.com/docs/planetscale.md): Connect a PlanetScale database with our MySQL connector
+- [Plausible.io](https://docs.equals.com/docs/plausibleio.md): Example Javascript code for importing data from Plausible.io
+- [Preparing data for analysis](https://docs.equals.com/docs/preparing-data-for-analysis.md): Correctly pull and structure raw data to build robust analyses that scale.
+- [Scheduling queries](https://docs.equals.com/docs/query-scheduling.md): Schedule queries to refresh on a schedule that works for your team
+- [Query version history](https://docs.equals.com/docs/query-version-history.md): Restore past versions of queries and their output data
+- [Query views from a workbook](https://docs.equals.com/docs/querying-views-from-a-workbook.md): Query a synced view from any Equals workbook for further analysis
+- [Quickbooks](https://docs.equals.com/docs/quickbooks.md): Connect your QuickBooks instance to Equals
+- [Railway](https://docs.equals.com/docs/railway.md): Connect a Postgres or MySQL databased hosted on Railway
+- [Resources & tutorials](https://docs.equals.com/docs/resources.md): Resources for self-learning and ways to get in touch for further support
+- [Salesforce](https://docs.equals.com/docs/salesforce.md): Connect your SFDC instance to Equals
+- [Saved queries](https://docs.equals.com/docs/saved-queries-1.md): Use saved queries to ensure that data is pulled consistently across workbooks
+- [Schema refreshes](https://docs.equals.com/docs/schema-refreshes.md): Datasource schemas will refresh automatically, or can be triggered manually
+- [Secret groups](https://docs.equals.com/docs/secret-groups.md): Store Import Script secrets in an encrypted, shareable store
+- [Segment](https://docs.equals.com/docs/segment.md): Connect your Segment instance to Equals
+- [Send dashboards to email and Slack](https://docs.equals.com/docs/send-dashboards-to-email-and-slack.md): Put your reporting on autopilot by automatically distributing dashboards to stakeholders on custom schedules
+- [Sharing and permissions](https://docs.equals.com/docs/sharing-permissions.md): Share and control access to your work in Equals
+- [Snowflake](https://docs.equals.com/docs/snowflake.md): Connect to a Snowflake warehouse from Equals
+- [Spreadsheet formatting](https://docs.equals.com/docs/spreadsheet-formatting.md): Customize the way data is displayed in your workbook
+- [Stripe](https://docs.equals.com/docs/stripe.md): Connect your company's Stripe account to Equals
+- [Supabase](https://docs.equals.com/docs/supabase.md): Connect a Postgres database hosted on Supabase
+- [Supported Functions](https://docs.equals.com/docs/supported-functions.md): The complete list of functions supported in Equals formulas
+- [Typeform](https://docs.equals.com/docs/typeform.md): Example Javascript code for importing response data from Typeform
+- [Overview](https://docs.equals.com/docs/using-your-arr-build-views.md): Learn how to use your ARR Build for analysis in any Equals workbook
+- [Views in your warehouse](https://docs.equals.com/docs/views-in-your-warehouse.md)
+- [Working with dates](https://docs.equals.com/docs/working-with-dates.md): Tips and tricks on how to analyze dates
+- [Overview](https://docs.equals.com/docs/workspaces.md): Create and configure your Equals workspace
+- [Overview](https://docs.equals.com/docs/write-an-import-script-connection.md): You can write import scripts using either Javascript or Python to build custom integrations with Equals, pulling in data from outside sources such as third party APIs.
+- [Writeback to CRM](https://docs.equals.com/docs/write-back-to-hubspot.md): Push data from your Equals workbooks to HubSpot or Salesforce objects.
+- [Xero](https://docs.equals.com/docs/xero.md): Connect your Xero instance to Equals
+- [Equals Documentation](https://docs.equals.com/index.md): Query, analyze, and report live data with the flexibility of a spreadsheet and the power of BI.
+
+## OpenAPI Specs
+
+- [openapi](https://docs.equals.com/api-reference/openapi.json)

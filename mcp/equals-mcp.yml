@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: searched
+status: published
+source: https://docs.equals.com/docs/equals-mcp.md
+server:
+  name: equals
+  transport: http
+  url: https://go.equals.com/api/mcp
+  hosting: remote
+  bridge: npx -y mcp-remote https://go.equals.com/api/mcp
+  auth:
+    type: oauth2
+    flow: browser-authorization
+    note: On first connection a browser window opens to authorize access to your Equals workspace.
+  requirements:
+  - Active Equals account with MCP enabled in the workspace
+  - Node.js installed (for the npx mcp-remote bridge)
+config_example:
+  mcpServers:
+    equals:
+      command: npx
+      args:
+      - -y
+      - mcp-remote
+      - https://go.equals.com/api/mcp
+tools:
+- name: workbook_discovery
+  description: Search and list workbooks by name or content; surface curated, team-trusted analyses.
+- name: datasource_querying
+  description: List connected datasources, explore their schemas, and execute SQL queries directly.
+- name: natural_language_analysis
+  description: Ask questions about data across accessible datasources and workbooks, powered by the Equals AI agent (requires credits).
+notes: Tool descriptions are summarized from the published Equals MCP documentation; exact tool identifiers are advertised by the live server at connect time.

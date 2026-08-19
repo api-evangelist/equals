@@ -1,0 +1,76 @@
+generated: '2026-08-14'
+method: searched
+source: https://docs.equals.com/docs/memories-api.md
+format: custom
+rfc9457: false
+envelope:
+  shape: '{"error": "<message>"}'
+  field: error
+  content_type: application/json
+  note: >-
+    Equals does not use application/problem+json. There is no type URI, no title/detail split, no
+    instance and no machine-readable error code — only a human-readable string. Clients must branch on
+    the HTTP status code; the string is not a stable contract.
+problems:
+  - status: 401
+    title: Unauthorized
+    detail: Missing, invalid, revoked, or expired API token.
+    retryable: false
+    remediation: >-
+      Mint a fresh token at Settings → API tokens in Equals. A revoked token never recovers; retrying
+      with the same credential will always fail.
+    observed:
+      url: https://go.equals.com/api/v1/memories
+      body: '{"error":"Unauthorized"}'
+      checked: '2026-08-14'
+    source_operations:
+      - openapi/equals-memories-openapi.yml#listMemories
+      - openapi/equals-memories-openapi.yml#getMemory
+      - openapi/equals-memories-openapi.yml#createMemory
+      - openapi/equals-memories-openapi.yml#updateMemory
+      - openapi/equals-memories-openapi.yml#deleteMemory
+  - status: 403
+    title: Forbidden
+    detail: The token's user is no longer a member of the workspace.
+    retryable: false
+    remediation: >-
+      Membership was removed. Re-add the user to the workspace or re-mint the token as a current member.
+      Do not retry — this is a state change, not a transient failure.
+    source_operations:
+      - openapi/equals-memories-openapi.yml#listMemories
+      - openapi/equals-memories-openapi.yml#getMemory
+      - openapi/equals-memories-openapi.yml#createMemory
+      - openapi/equals-memories-openapi.yml#updateMemory
+      - openapi/equals-memories-openapi.yml#deleteMemory
+  - status: 404
+    title: Not Found
+    detail: No memory with that id in the workspace.
+    retryable: false
+    remediation: >-
+      Confirm the id and that the token belongs to the same workspace. Because memories are
+      workspace-scoped, a valid id from another workspace is indistinguishable from a deleted one.
+    source_operations:
+      - openapi/equals-memories-openapi.yml#getMemory
+      - openapi/equals-memories-openapi.yml#updateMemory
+      - openapi/equals-memories-openapi.yml#deleteMemory
+  - status: 422
+    title: Unprocessable Entity
+    detail: Invalid request — for example, creating a memory with empty content.
+    retryable: false
+    remediation: Supply a non-empty content string and resend.
+    source_operations:
+      - openapi/equals-memories-openapi.yml#createMemory
+      - openapi/equals-memories-openapi.yml#updateMemory
+gaps:
+  - No 429 / rate-limit error is documented.
+  - No 5xx behaviour is documented.
+  - No stable machine-readable error code accompanies the message string.
+mcp_surface:
+  note: >-
+    The hosted MCP server returns JSON-RPC errors, not this envelope. An unauthenticated tools/list
+    returns {"jsonrpc":"2.0","id":null,"error":{"code":-32000,"message":"Unauthorized"}} with HTTP 401
+    and a WWW-Authenticate header pointing at the RFC 9728 protected-resource document.
+  evidence:
+    url: https://go.equals.com/api/mcp
+    status: 401
+    checked: '2026-08-14'

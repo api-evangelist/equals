@@ -1,0 +1,76 @@
+generated: '2026-08-14'
+method: searched
+source: live probes of every Equals host
+note: >-
+  Three real documents were served. go.equals.com (the Equals application + API + MCP host) publishes
+  RFC 8414 OAuth authorization-server metadata and RFC 9728 protected-resource metadata for its hosted
+  MCP server — the 401 from the MCP endpoint returns a WWW-Authenticate header pointing at the latter.
+  docs.equals.com publishes an A2A agent card (see a2a/) and a Mintlify docs MCP manifest. The apex
+  equals.com serves an SPA 404 for every /.well-known/ path probed; no security.txt is served anywhere.
+hosts:
+  - host: https://go.equals.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: equals-oauth-authorization-server.json
+        spec: RFC 8414
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: equals-oauth-protected-resource.json
+        spec: RFC 9728
+        note: Declares resource https://go.equals.com/api/mcp with authorization server https://go.equals.com.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://docs.equals.com
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 200
+        file: ../a2a/equals-agent-card.json
+        spec: A2A
+        note: Saved verbatim under a2a/; see a2a/equals-a2a.yml for the grade.
+      - path: /.well-known/mcp.json
+        status: 200
+        file: equals-docs-mcp.json
+        note: >-
+          Mintlify-generated docs-search MCP manifest. It advertises an anonymous MCP endpoint on a
+          Mintlify-hosted domain (equals.main-kill-isr.mintlify.me/mcp), not an Equals-controlled host.
+          Verified live: tools/list returns search_concepts, query_docs_filesystem_concepts,
+          submit_feedback. This is documentation search, NOT the Equals product MCP server.
+      - path: /.well-known/agent-skills/equals/skill.md
+        status: 200
+        file: ../skills/equals-equals.md
+        note: Provider-published Agent Skill, saved verbatim under skills/.
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://equals.com
+    note: SPA catch-all returns 404 for all probed paths.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+checked: '2026-08-14'

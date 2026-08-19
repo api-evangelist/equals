@@ -1,0 +1,55 @@
+generated: '2026-08-14'
+method: derived
+source: openapi/equals-memories-openapi.yml
+docs: https://docs.equals.com/docs/memories-api
+note: >-
+  The REST surface exposes exactly one entity. The wider product domain (workspaces, workbooks,
+  datasources, views, dashboards) is documented in prose and reachable through the MCP server, but it
+  has no public REST representation, so those entities are recorded as conceptual — not as API objects
+  with fields we can claim to know.
+entities:
+  - name: Memory
+    api_exposed: true
+    schema: openapi/equals-memories-openapi.yml#/components/schemas/Memory
+    id_format: UUID
+    id_prefix: null
+    description: A plain-text fact the Equals AI analyst remembers about a workspace.
+    fields:
+      - {name: id, type: string, format: uuid, immutable: true}
+      - {name: content, type: string, writable: true, required_on_create: true}
+      - {name: created_at, type: string, format: date-time}
+      - {name: updated_at, type: string, format: date-time}
+    operations: [listMemories, getMemory, createMemory, updateMemory, deleteMemory]
+    collection: memories
+relationships:
+  - from: Workspace
+    to: Memory
+    type: has_many
+    via: implicit — the API token carries the workspace; no workspace field appears on the object
+    confidence: high
+    evidence: >-
+      "Tokens act as you, scoped to the workspace they were created in" and "Returns all memories in
+      the workspace" — https://docs.equals.com/docs/memories-api
+conceptual_entities:
+  note: >-
+    Documented product concepts with no public REST representation. Listed for the domain map only; no
+    field-level schema is asserted because Equals publishes none.
+  source: https://docs.equals.com/.well-known/agent-skills/equals/skill.md
+  entities:
+    - {name: Workspace, description: Company account containing workbooks, datasources, queries and views.}
+    - {name: Workbook, description: Analysis file with connected sheets for querying and regular sheets for analysis.}
+    - {name: Datasource, description: Connection to a database, warehouse or SaaS app.}
+    - {name: SavedQuery, description: A query reused across workbooks and updated in one place.}
+    - {name: View, description: SQL transformation synced into the Equals Warehouse schema.}
+    - {name: Dashboard, description: Live report built from workbook objects; exactly one per workbook.}
+  conceptual_relationships:
+    - {from: Workspace, to: Workbook, type: has_many}
+    - {from: Workspace, to: Datasource, type: has_many}
+    - {from: Workspace, to: View, type: has_many}
+    - {from: Workspace, to: SavedQuery, type: has_many}
+    - {from: Workbook, to: Dashboard, type: has_one, note: "Each workbook has exactly one dashboard."}
+    - {from: View, to: Datasource, type: belongs_to, note: "Views can only be built on Equals Warehouse datasources."}
+coverage:
+  rest_entities: 1
+  conceptual_entities: 6
+  relationships_asserted: 1

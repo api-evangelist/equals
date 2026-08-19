@@ -1,0 +1,66 @@
+generated: '2026-08-14'
+method: searched
+source: openapi/equals-memories-openapi.yml
+docs:
+  - https://docs.equals.com/docs/memories-api
+  - https://docs.equals.com/docs/equals-mcp
+note: >-
+  Equals runs two separate programmatic surfaces with two different auth models: the REST Memories API
+  uses a workspace-scoped bearer API token minted in the product UI, while the hosted MCP server uses a
+  full OAuth 2.1 authorization-code flow with PKCE and dynamic client registration, advertised through
+  RFC 8414 / RFC 9728 discovery documents. Both were probed live.
+summary:
+  types: [http, oauth2]
+  http_schemes: [bearer]
+  oauth2_flows: [authorizationCode]
+  api_key_in: [header]
+  anonymous_access: false
+schemes:
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    surface: REST — Memories API
+    sources: [openapi/equals-memories-openapi.yml]
+    token_source: Settings → API tokens → Create token, inside the Equals app
+    token_prefix: eq_
+    token_visibility: shown once at creation
+    scope_model: >-
+      Tokens act as the creating user and are scoped to the workspace the token was created in. No
+      granular scopes or permissions are published.
+    revocation: Revocable from the same Settings → API tokens page at any time.
+    header: 'Authorization: Bearer <token>'
+    evidence:
+      url: https://go.equals.com/api/v1/memories
+      status: 401
+      body: '{"error":"Unauthorized"}'
+      checked: '2026-08-14'
+  - name: mcpOAuth
+    type: oauth2
+    surface: MCP — https://go.equals.com/api/mcp
+    sources: [well-known/equals-oauth-authorization-server.json, well-known/equals-oauth-protected-resource.json]
+    issuer: https://go.equals.com
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://go.equals.com/oauth/authorize
+        tokenUrl: https://go.equals.com/oauth/token
+        pkce: [S256]
+        scopes: {}
+        note: The authorization-server metadata publishes no scopes_supported; no scope surface is documented.
+    registration_endpoint: https://go.equals.com/oauth/register
+    dynamic_client_registration: true
+    grant_types_supported: [authorization_code, refresh_token]
+    token_endpoint_auth_methods_supported: [none]
+    response_types_supported: [code]
+    authorization_response_iss_parameter_supported: true
+    bearer_methods_supported: [header]
+    protected_resource: https://go.equals.com/api/mcp
+    evidence:
+      url: https://go.equals.com/api/mcp
+      status: 401
+      www_authenticate: 'Bearer realm="Equals", resource_metadata="https://go.equals.com/.well-known/oauth-protected-resource"'
+      checked: '2026-08-14'
+sso:
+  enterprise_sso: true
+  providers_named: [Okta, Azure AD]
+  note: End-user SSO on the Enterprise plan only; this is product sign-in, not API authentication.
+  source: https://equals.com/pricing

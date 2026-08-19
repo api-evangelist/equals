@@ -1,13 +1,38 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: searched
-source: https://status.equals.com
+source: https://status.equals.com + https://docs.equals.com/docs/memories-api.md
 status_page: https://status.equals.com
+status_page_status: 200
 versioning:
-  scheme: none-published
-  note: Equals is a hosted SaaS analytics platform. It publishes a public status page but no public API versioning or deprecation policy; its programmatic surface is the hosted Equals MCP server (mcp/equals-mcp.yml).
+  scheme: uri-path
+  current: v1
+  base: https://go.equals.com/api/v1
+  policy_url: null
+  note: >-
+    The REST base carries a v1 path segment, but Equals publishes no versioning policy, no version
+    history and no statement about how breaking changes are handled. The hosted MCP server is unversioned.
 deprecation:
   policy_url: null
   sunset_header: null
+  deprecation_header: null
+  note: No deprecation policy, no RFC 8594 Sunset/Deprecation header support documented or observed.
 sla:
   url: null
+  uptime_target: null
+changelog:
+  url: https://equals.com/launches/
+  artifact: changelog/equals-changelog.yml
+  note: >-
+    Equals publishes a dated product changelog at /launches/ (12 entries listed, 2026-05-04 to
+    2026-07-31). It tracks product features, not API changes: no entry is versioned or marked breaking.
+    The conventional paths return 404 — docs.equals.com/changelog and equals.com/changelog — which is
+    why an earlier pass recorded none.
+support:
+  url: https://docs.equals.com/docs/resources
 deprecated_operations: []
+probes:
+  - {url: 'https://status.equals.com', status: 200}
+  - {url: 'https://docs.equals.com/changelog', status: 404}
+  - {url: 'https://equals.com/changelog', status: 404}
+  - {url: 'https://equals.com/blog', status: 404}
+checked: '2026-08-14'

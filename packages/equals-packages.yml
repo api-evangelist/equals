@@ -1,0 +1,42 @@
+generated: '2026-08-14'
+method: searched
+source: npm, PyPI, GitHub org github.com/EqualsHQ, https://docs.equals.com
+official_package_count: 0
+note: >-
+  Equals ships no first-party client library in any registry. npm, PyPI, RubyGems, crates.io and the
+  docs were searched; the github.com/EqualsHQ organization exists (HTTP 200) but exposes zero public
+  repositories, so there is no source-distributed SDK either. The only install command Equals publishes
+  anywhere is `npx -y mcp-remote <url>`, and mcp-remote is a third-party bridge by Glen Maddern, not an
+  Equals package — it is recorded below with official: false so the distinction is visible in data
+  rather than buried in prose. The PyPI package named "equals" is an unrelated fuzzy-matching test
+  library by Todd Sifleet (smartfastlabs) and is deliberately NOT listed here.
+packages:
+  - language: javascript
+    registry: npm
+    name: mcp-remote
+    url: https://www.npmjs.com/package/mcp-remote
+    repository: https://github.com/geelen/mcp-remote
+    install: npx -y mcp-remote https://go.equals.com/api/mcp
+    official: false
+    role: >-
+      Third-party stdio↔HTTP bridge Equals' own documentation instructs users to run so MCP clients that
+      only support local servers (Cursor, Windsurf, Zed, Claude Desktop free/pro) can reach the remote
+      Equals MCP endpoint. Clients with native remote-MCP support need no package at all.
+    version: 0.1.38
+    published: '2026-02-05'
+    version_source: https://registry.npmjs.org/mcp-remote
+    referenced_by: https://docs.equals.com/docs/equals-mcp
+searched_registries:
+  - {registry: npm, result: no first-party package}
+  - {registry: pypi, result: no first-party package; the name "equals" is taken by an unrelated project}
+  - {registry: rubygems, result: not searched — no Ruby surface documented}
+  - {registry: maven-central, result: no first-party package}
+  - {registry: nuget, result: no first-party package}
+  - {registry: crates.io, result: no first-party package}
+  - {registry: pkg.go.dev, result: no first-party package}
+github_org:
+  url: https://github.com/EqualsHQ
+  status: 200
+  public_repos: 0
+  checked: '2026-08-14'
+checked: '2026-08-14'

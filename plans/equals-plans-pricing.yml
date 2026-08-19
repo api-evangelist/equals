@@ -1,0 +1,94 @@
+generated: '2026-08-14'
+method: searched
+source: https://equals.com/pricing
+currency: USD
+billing_period: annual
+plan_count: 3
+note: >-
+  Equals publishes list prices for all three tiers on its public pricing page, but every tier converts
+  through a "Get a demo" sales motion — there is no self-serve signup or credit-card checkout. Seats are
+  unlimited on every tier; the pricing levers are connector count, data-refresh frequency, and included
+  AI spend. AI is metered: the monthly allowance is included in the annual price and overage is
+  usage-based (rate not published).
+plans:
+  - name: Essential
+    tagline: Numbers you can trust.
+    price: 24000
+    price_display: $24k/year
+    currency: USD
+    period: year
+    signup: sales
+    signup_url: https://equals.com/pricing
+    included:
+      seats: unlimited (viewers and editors)
+      connectors: 3 (of choice)
+      data_refresh: every 6 hours
+      ai_spend_included: $250/mo
+      bi_spreadsheet: true
+      dashboards: true
+      push_to_slack: true
+      forward_deployed_analyst: true
+      writeback: false
+      infinity_large_datasets: false
+      enterprise_sso: false
+    overage:
+      ai: usage-based beyond the included monthly AI spend (rate not published)
+      additional_connectors: not offered on this tier
+  - name: Business
+    tagline: Numbers the company can trust.
+    price: 36000
+    price_display: $36k/year
+    currency: USD
+    period: year
+    signup: sales
+    signup_url: https://equals.com/pricing
+    included:
+      seats: unlimited (viewers and editors)
+      connectors: 5 (of choice) or Equals Warehouse
+      data_refresh: every hour
+      ai_spend_included: $500/mo
+      bi_spreadsheet: true
+      dashboards: true
+      push_to_slack: true
+      forward_deployed_analyst: true
+      writeback: true
+      infinity_large_datasets: true
+      enterprise_sso: false
+    overage:
+      ai: usage-based beyond the included monthly AI spend (rate not published)
+      additional_connectors_databases_and_scripts: $199/mo each
+      additional_connectors_everything_else: $699/mo each
+  - name: Enterprise
+    tagline: Numbers the enterprise can trust.
+    price: 60000
+    price_display: $60k/year
+    currency: USD
+    period: year
+    signup: sales
+    signup_url: https://equals.com/pricing
+    included:
+      seats: unlimited (viewers and editors)
+      connectors: unlimited (or Equals Warehouse)
+      data_refresh: every 15 minutes
+      ai_spend_included: $1,000/mo
+      bi_spreadsheet: true
+      dashboards: true
+      push_to_slack: true
+      forward_deployed_analyst: true
+      writeback: true
+      infinity_large_datasets: true
+      enterprise_sso: true
+      sso_providers: [Okta, Azure AD]
+    overage:
+      ai: usage-based beyond the included monthly AI spend (rate not published)
+      additional_connectors_databases_and_scripts: $199/mo each
+      additional_connectors_everything_else: $699/mo each
+api_pricing:
+  note: >-
+    Neither the Memories API nor the hosted MCP server is priced separately. MCP and Slack AI calls
+    consume the plan's Equals AI credits ("Please note that MCP/Slack AI calls cost normal Equals AI
+    credits" — https://docs.equals.com/docs/equals-mcp), so agent usage draws down the same metered AI
+    allowance shown above.
+free_tier: false
+trial: not published
+checked: '2026-08-14'

@@ -1,0 +1,33 @@
+generated: '2026-08-14'
+method: searched
+source: https://docs.equals.com/docs/embed-dashboards.md
+note: >-
+  Equals ships no JavaScript element library, web components or loader script. Its only client-side
+  embedding surface is the hosted dashboard itself, shared as a URL and dropped into any tool that
+  accepts an iframe. Recorded because it is a genuine embeddable surface, not because it is a component
+  SDK — there is nothing to install and no API to call.
+component_families:
+  - name: Embedded dashboard
+    kind: hosted-iframe
+    loader: none
+    install: none
+    integration: >-
+      Set the dashboard's access to "Anyone with the link", copy the link from the Publish panel, and
+      paste it as an embed in any iframe-capable destination.
+    destinations_named: [Notion, Coda]
+    configuration:
+      - {option: custom dashboard URL, source: https://docs.equals.com/docs/dashboard-settings}
+      - {option: toggle Equals branding in View mode, source: https://docs.equals.com/docs/dashboard-settings}
+      - {option: resize the iframe in the host tool, source: https://docs.equals.com/docs/embed-dashboards}
+    auth: link-based (public to anyone holding the URL)
+    caveat: >-
+      Embedding requires the dashboard to be shared with "Anyone with the link", so the embed is
+      unauthenticated by design — the link IS the credential.
+    source: https://docs.equals.com/docs/embed-dashboards
+related_distribution:
+  - name: Scheduled dashboard delivery
+    kind: outbound push, not an embed
+    destinations: [email, Slack]
+    schedules: [hourly, daily, weekly, monthly]
+    source: https://docs.equals.com/docs/send-dashboards-to-email-and-slack
+checked: '2026-08-14'

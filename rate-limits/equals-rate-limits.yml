@@ -1,0 +1,44 @@
+generated: '2026-08-14'
+method: searched
+source: https://docs.equals.com/docs/memories-api.md
+limit_count: 0
+note: >-
+  Equals publishes no rate limits for either programmatic surface. The Memories API reference documents
+  four error statuses (401/403/404/422) and no 429. A live unauthenticated request to
+  https://go.equals.com/api/v1/memories returned 401 with no RateLimit-*, X-RateLimit-* or Retry-After
+  headers, and a live unauthenticated tools/list against https://go.equals.com/api/mcp returned 401 with
+  none either. An agent therefore has no runtime signal to pace against and must self-throttle.
+limits: []
+response_headers:
+  standard_ratelimit: false
+  x_ratelimit: false
+  retry_after: false
+  observed_on_401: [x-request-id, x-runtime]
+exhaustion_status: not published
+probes:
+  - url: https://go.equals.com/api/v1/memories
+    status: 401
+    rate_limit_headers: none
+    checked: '2026-08-14'
+  - url: https://go.equals.com/api/mcp
+    status: 401
+    rate_limit_headers: none
+    checked: '2026-08-14'
+related_quotas:
+  - name: Equals AI credits
+    kind: commercial quota, not an API rate limit
+    detail: >-
+      MCP and Slack AI calls consume normal Equals AI credits; each plan includes a monthly AI spend
+      allowance ($250/$500/$1,000 per month) after which usage is billed. This meters agent activity
+      economically rather than by request rate.
+    source: https://docs.equals.com/docs/equals-mcp
+  - name: Fivetran fair-use policy
+    kind: sync throttling
+    detail: >-
+      "We reserve the right to pause syncing of any Fivetran powered datasources... where the amount of
+      data being synced is significantly above average."
+    source: https://docs.equals.com/docs/faq
+  - name: Agent response latency
+    kind: timeout guidance
+    detail: The Equals agent can take 1–5 minutes to answer complex questions; MCP clients must poll rather than give up early.
+    source: https://docs.equals.com/docs/equals-mcp

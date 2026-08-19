@@ -1,0 +1,94 @@
+generated: '2026-08-14'
+method: searched
+source: https://docs.equals.com/docs/memories-api.md
+note: >-
+  Cross-cutting runtime semantics for the Equals REST surface (the Memories API) and, where they differ,
+  the hosted MCP server. Recorded absences are real: several conventions a mature API would publish are
+  simply not documented by Equals, and are marked documented: false rather than guessed at.
+authentication:
+  style: bearer-token
+  header: Authorization
+  format: 'Bearer <token>'
+  token_prefix: eq_
+  detail: authentication/equals-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://go.equals.com/api/v1
+  policy_published: false
+  note: The version appears in the path; no versioning or deprecation policy is published.
+idempotency:
+  supported: false
+  documented: false
+  header: null
+  note: >-
+    No Idempotency-Key header or equivalent is documented for POST /memories, and none appears in the
+    published reference. A retried create produces a second memory with a new id, so retries are NOT
+    safe without a read-back reconciliation on content. Recorded as an honest absence — no Idempotency
+    pointer is emitted for this provider.
+pagination:
+  supported: false
+  documented: false
+  note: >-
+    GET /memories returns the complete workspace collection in a single memories[] array, newest first.
+    No limit/offset/cursor parameters and no next-page fields are documented.
+sorting:
+  default: newest first
+  configurable: false
+filtering:
+  documented: false
+field_expansion:
+  supported: false
+sparse_fields:
+  supported: false
+metadata:
+  supported: false
+  note: The memory object exposes only id, content, created_at, updated_at. There is no metadata bag.
+request_tracing:
+  request_id_header: null
+  documented: false
+  observed: x-request-id
+  note: >-
+    Not documented, but the live 401 response from go.equals.com carries an x-request-id header (and
+    x-runtime); useful for support escalation even though Equals does not describe it.
+error_envelope:
+  format: custom
+  rfc9457: false
+  shape: '{"error": "<message>"}'
+  content_type: application/json
+  status_codes: [401, 403, 404, 422]
+  detail: errors/equals-problem-types.yml
+rate_limiting:
+  documented: false
+  response_headers_observed: []
+  detail: rate-limits/equals-rate-limits.yml
+timestamps:
+  format: ISO 8601 / RFC 3339, UTC
+  example: '2026-07-21T18:30:00Z'
+identifiers:
+  format: UUID v4
+  prefixed: false
+  example: 2f1b6a9c-8f4e-4c1a-9b2d-7e5f3a1c8d4b
+content_negotiation:
+  request: application/json
+  response: application/json
+  empty_success: 204 with no body (DELETE)
+tenancy:
+  model: workspace-scoped
+  note: >-
+    A token is bound to the workspace it was minted in and acts as its creating user. There is no
+    account-level or cross-workspace addressing in the API — the workspace is implicit in the token,
+    never a path or query parameter.
+egress:
+  static_ip: 54.68.61.53
+  note: >-
+    Equals always connects OUT to customer databases from this static IP; allowlist it or connections
+    fail silently. This is inbound-to-the-customer, not an API convention, but it is the single most
+    load-bearing networking fact Equals publishes.
+  source: https://docs.equals.com/docs/faq
+cross_links:
+  authentication: authentication/equals-authentication.yml
+  errors: errors/equals-problem-types.yml
+  lifecycle: lifecycle/equals-lifecycle.yml
+  rate_limits: rate-limits/equals-rate-limits.yml
+  data_model: data-model/equals-data-model.yml

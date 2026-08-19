@@ -1,0 +1,74 @@
+generated: '2026-08-14'
+method: searched
+source: https://equals.com/launches/
+url: https://equals.com/launches/
+title: Launches
+description: >-
+  Equals publishes a dated product changelog it calls "Launches" — "Follow along as we build the
+  AI-native spreadsheet, starting with GTM analytics." Each entry has its own page under
+  /launches/<year>/<slug>/, and each month closes with a combined "Improvements and fixes" post.
+scheme:
+  versioning: none
+  note: >-
+    Entries are dated, not versioned. Equals ships no semantic version, no release tags and no API
+    version history; the REST base carries a v1 path segment that has never changed. Nothing in the
+    changelog is marked breaking, and no deprecation notices appear.
+current_version: null
+covers: product features (web app, AI analyst, dashboards) — not API changes specifically
+api_changes_tracked: false
+entries:
+  - date: '2026-07-31'
+    title: Improvements and fixes
+    url: https://equals.com/launches/2026/july-improvements-and-fixes/
+    kind: maintenance
+  - date: '2026-07-10'
+    title: TV mode
+    url: https://equals.com/launches/2026/tv-mode/
+    kind: addition
+  - date: '2026-06-30'
+    title: Improvements and fixes
+    url: https://equals.com/launches/2026/june-improvements-and-fixes/
+    kind: maintenance
+  - date: '2026-06-11'
+    title: Upload images into AI chats
+    url: https://equals.com/launches/2026/image-in-ai-chats/
+    kind: addition
+  - date: '2026-06-04'
+    title: Ask on dashboards
+    url: https://equals.com/launches/2026/ask-on-dashboards/
+    kind: addition
+  - date: '2026-05-31'
+    title: Improvements and fixes
+    url: https://equals.com/launches/2026/may-improvements-and-fixes/
+    kind: maintenance
+  - date: '2026-05-08'
+    title: Writeback improvements
+    url: https://equals.com/launches/2026/writeback-improvements/
+    kind: addition
+  - date: '2026-05-07'
+    title: Cell warnings
+    url: https://equals.com/launches/2026/cell-warnings/
+    kind: addition
+  - date: '2026-05-07'
+    title: Full-text workbook search
+    url: https://equals.com/launches/2026/full-text-workbook-search/
+    kind: addition
+  - date: '2026-05-06'
+    title: Memories for Analyst
+    url: https://equals.com/launches/2026/analyst-memories-ui/
+    kind: addition
+    note: >-
+      The feature the Memories API (openapi/equals-memories-openapi.yml) exposes programmatically. The
+      UI shipped 2026-05-06; the API reference is dated later in the docs (screenshots from 2026-07-23).
+  - date: '2026-05-05'
+    title: Data validation
+    url: https://equals.com/launches/2026/data-validation/
+    kind: addition
+  - date: '2026-05-04'
+    title: Expanded datasources for Analyst
+    url: https://equals.com/launches/2026/expanded-datasources-analyst/
+    kind: addition
+entry_count: 12
+window: 2026-05-04 to 2026-07-31 (the full set listed on the index at fetch time)
+breaking_changes_listed: 0
+checked: '2026-08-14'

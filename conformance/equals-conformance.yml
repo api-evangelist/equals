@@ -1,0 +1,91 @@
+generated: '2026-08-14'
+method: searched
+source: live probes + https://docs.equals.com/docs/faq
+note: >-
+  Equals' standards posture is strongest on the agent side: the hosted MCP server is fronted by a
+  genuinely modern OAuth 2.1 stack with RFC 8414 and RFC 9728 discovery documents and dynamic client
+  registration, and the docs host serves an A2A agent card, an Agent Skill and an llms.txt. The REST
+  side is thin by comparison — a bare error envelope, no problem+json, no pagination, no idempotency.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      https://go.equals.com/.well-known/oauth-authorization-server declares authorization_code +
+      refresh_token grants with S256 PKCE (well-known/equals-oauth-authorization-server.json).
+  - id: oauth2.1-pkce
+    conforms: true
+    evidence: code_challenge_methods_supported = [S256]; token_endpoint_auth_methods_supported = [none] (public client).
+  - id: rfc8414-authorization-server-metadata
+    conforms: true
+    evidence: 200 at /.well-known/oauth-authorization-server on go.equals.com.
+  - id: rfc9728-protected-resource-metadata
+    conforms: true
+    evidence: >-
+      200 at /.well-known/oauth-protected-resource declaring resource https://go.equals.com/api/mcp; the
+      MCP 401 also returns WWW-Authenticate with a resource_metadata pointer.
+  - id: rfc7591-dynamic-client-registration
+    conforms: true
+    evidence: registration_endpoint https://go.equals.com/oauth/register published in AS metadata.
+  - id: rfc9207-iss-parameter
+    conforms: true
+    evidence: authorization_response_iss_parameter_supported = true.
+  - id: mcp
+    conforms: true
+    evidence: >-
+      Hosted remote MCP server at https://go.equals.com/api/mcp; documented setup for Claude, Claude
+      Code, ChatGPT, Cursor, Windsurf, Zed. tools/list returns HTTP 401 (auth-gated) — mcp/equals-mcp.yml.
+  - id: a2a
+    conforms: partial
+    grade: near-conformant
+    evidence: Agent card served at https://docs.equals.com/.well-known/agent-card.json — see a2a/equals-a2a.yml.
+  - id: agent-skills
+    conforms: true
+    evidence: https://docs.equals.com/.well-known/agent-skills/equals/skill.md (saved verbatim in skills/).
+  - id: llms-txt
+    conforms: true
+    evidence: https://docs.equals.com/llms.txt and /llms-full.txt both 200.
+  - id: openid-connect
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404 on every Equals host.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors are a bare {"error":"..."} JSON envelope; no application/problem+json.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on equals.com, go.equals.com and docs.equals.com.
+  - id: idempotency
+    conforms: false
+    evidence: No Idempotency-Key header documented for POST /memories.
+  - id: pagination
+    conforms: false
+    evidence: GET /memories returns the whole collection; no limit/offset/cursor documented.
+  - id: openapi
+    conforms: false
+    evidence: >-
+      Equals publishes no OpenAPI for its own API. The only spec on the docs host,
+      https://docs.equals.com/api-reference/openapi.json, is the unmodified Mintlify sample "OpenAPI
+      Plant Store" (servers http://sandbox.mintlify.com) and was rejected as not belonging to Equals.
+      openapi/equals-memories-openapi.yml is an API Evangelist generation from the published reference.
+  - id: soc2-type-ii
+    conforms: true
+    evidence: >-
+      "Equals is SOC 2 Type II certified. We also complete regular pen tests." —
+      https://docs.equals.com/docs/faq
+compliance:
+  published: true
+  page: https://docs.equals.com/docs/faq
+  certifications:
+    - name: SOC 2 Type II
+      status: certified
+      source: https://docs.equals.com/docs/faq
+  practices:
+    - Regular penetration testing (cadence not published).
+    - All sensitive datasource credentials (passwords, SSH keys, connection strings, OAuth tokens) stored encrypted, with the key accessible only to the necessary production servers.
+    - Customer data segregated with unique credentials per datasource, per customer.
+    - Subprocessor Fivetran used for non-SQL connectors; in-transit data purged typically within 8 hours.
+  trust_center: false
+  note: >-
+    Equals states SOC 2 Type II certification in its docs FAQ but publishes no trust center, no
+    certification portal, and no report-request flow; trust.equals.com and security.equals.com do not
+    resolve.
+checked: '2026-08-14'

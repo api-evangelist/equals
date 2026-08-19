@@ -38,7 +38,7 @@ accessModel:
     go.equals.com/ is the application sign-in. API credentials therefore require an existing paid
     workspace: the Memories API token is minted in Settings, and the MCP server requires MCP enabled on
     the workspace.
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-14'
 image: https://avatars.githubusercontent.com/u/16228084?v=4

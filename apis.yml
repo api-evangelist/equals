@@ -63,6 +63,12 @@ apis:
   humanURL: https://docs.equals.com/docs/memories-api
   baseURL: https://go.equals.com/api/v1
   tags:
+  - Memories
+  - ai-context
+  - Analytics
+  - REST
+  - Workspace
+  tags_raw:
   - memories
   - ai-context
   - analytics
@@ -96,6 +102,13 @@ apis:
   humanURL: https://docs.equals.com/docs/equals-mcp
   baseURL: https://go.equals.com/api/mcp
   tags:
+  - MCP
+  - agent-native
+  - Analytics
+  - Business Intelligence
+  - SQL
+  - Natural Language Query
+  tags_raw:
   - mcp
   - agent-native
   - analytics

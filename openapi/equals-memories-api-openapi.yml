@@ -1,0 +1,241 @@
+openapi: 3.2.0
+info:
+  title: Equals Memories API
+  version: v1
+  description: The Equals Memories API manages the facts the Equals AI analyst remembers about a workspace — context it has learned from conversations, or that a user added on the Memories page. It lets a caller sync context from other systems, audit what the analyst knows, or build tooling on top. Memories are scoped to the workspace the API token was created in.
+  termsOfService: https://equals.com/policies/equals-online-terms-and-conditions-GP-april-11-22.pdf
+  contact:
+    name: Equals Support
+    url: https://docs.equals.com/docs/resources
+  x-provenance:
+    method: generated
+    source: https://docs.equals.com/docs/memories-api.md
+    generated: '2026-08-14'
+    note: Equals publishes no OpenAPI document for this API. Every path, method, parameter, field, status code and example below is transcribed verbatim from the provider's own published Memories API reference at https://docs.equals.com/docs/memories-api. Nothing is inferred beyond what that page states. The docs host also serves https://docs.equals.com/api-reference/openapi.json, but that file is the unedited Mintlify sample "OpenAPI Plant Store" (servers http://sandbox.mintlify.com) and does NOT describe Equals — it was rejected, not harvested.
+    live_probe:
+      url: https://go.equals.com/api/v1/memories
+      status: 401
+      body: '{"error":"Unauthorized"}'
+      checked: '2026-08-14'
+servers:
+- url: https://go.equals.com/api/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Memories
+  description: Facts the Equals AI analyst remembers about a workspace.
+paths:
+  /memories:
+    get:
+      operationId: listMemories
+      tags:
+      - Memories
+      summary: List memories
+      description: Returns all memories in the workspace, newest first.
+      responses:
+        '200':
+          description: A list of memories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryList'
+              example:
+                memories:
+                - id: 2f1b6a9c-8f4e-4c1a-9b2d-7e5f3a1c8d4b
+                  content: Fiscal year starts in February. Q1 = Feb–Apr.
+                  created_at: '2026-07-21T18:30:00Z'
+                  updated_at: '2026-07-21T18:30:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createMemory
+      tags:
+      - Memories
+      summary: Create a memory
+      description: Creates a memory in the workspace the API token belongs to.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryWrite'
+            example:
+              content: ARR excludes one-time services revenue.
+      responses:
+        '201':
+          description: The created memory object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Memory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/Unprocessable'
+  /memories/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the memory.
+      schema:
+        type: string
+        format: uuid
+      example: 2f1b6a9c-8f4e-4c1a-9b2d-7e5f3a1c8d4b
+    get:
+      operationId: getMemory
+      tags:
+      - Memories
+      summary: Get a memory
+      description: Returns a single memory object.
+      responses:
+        '200':
+          description: The memory object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Memory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateMemory
+      tags:
+      - Memories
+      summary: Update a memory
+      description: Replaces the content of an existing memory.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryWrite'
+            example:
+              content: ARR excludes one-time services and setup fees.
+      responses:
+        '200':
+          description: The updated memory object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Memory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/Unprocessable'
+    delete:
+      operationId: deleteMemory
+      tags:
+      - Memories
+      summary: Delete a memory
+      description: Deletes a memory. Returns an empty response.
+      responses:
+        '204':
+          description: The memory was deleted. No content.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Error:
+      type: object
+      description: The Equals error envelope.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+          example: Unauthorized
+      required:
+      - error
+    Memory:
+      type: object
+      description: A fact the Equals AI analyst remembers about the workspace.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the memory.
+          example: 2f1b6a9c-8f4e-4c1a-9b2d-7e5f3a1c8d4b
+        content:
+          type: string
+          description: The memory itself, as plain text.
+          example: Fiscal year starts in February. Q1 = Feb–Apr.
+        created_at:
+          type: string
+          format: date-time
+          description: When the memory was created (ISO 8601).
+          example: '2026-07-21T18:30:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: When the memory was last updated (ISO 8601).
+          example: '2026-07-21T18:30:00Z'
+      required:
+      - id
+      - content
+      - created_at
+      - updated_at
+    MemoryWrite:
+      type: object
+      description: The writable fields of a memory.
+      properties:
+        content:
+          type: string
+          description: Required. The memory to remember.
+      required:
+      - content
+    MemoryList:
+      type: object
+      properties:
+        memories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Memory'
+      required:
+      - memories
+  responses:
+    Unprocessable:
+      description: Invalid request — for example, creating a memory with empty content.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The token's user is no longer a member of the workspace.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No memory with that id in the workspace.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid, revoked, or expired API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: An Equals API token, passed as a bearer token. Create one in Settings → API tokens in Equals; the token is shown only once, at creation. Tokens act as the creating user, scoped to the workspace they were created in, and can be revoked from the same page.

@@ -79,9 +79,9 @@ apis:
   - MCP
   - agent-native
   - Analytics
-  - business-intelligence
+  - Business Intelligence
   - SQL
-  - natural-language-query
+  - Natural Language Query
   tags_raw:
   - mcp
   - agent-native

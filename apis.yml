@@ -198,6 +198,8 @@ common:
   url: https://equals.com/launches/
 - type: ChangeLog
   url: changelog/equals-changelog.yml
+- type: Contact
+  url: mailto:help@equals.com
 x-enrichment:
   date: '2026-08-14'
   status: enriched

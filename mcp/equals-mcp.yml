@@ -18,76 +18,89 @@ server:
     registration_endpoint: https://go.equals.com/oauth/register
     dynamic_client_registration: true
     discovery:
-      - well-known/equals-oauth-authorization-server.json
-      - well-known/equals-oauth-protected-resource.json
+    - well-known/equals-oauth-authorization-server.json
+    - well-known/equals-oauth-protected-resource.json
     note: On first connection a browser window opens to authorize access to your Equals workspace.
   requirements:
-    - Active Equals account with MCP enabled in the workspace
-    - Node.js installed (only for clients that need the npx mcp-remote bridge)
-  clients_documented: [Claude, Claude Code, ChatGPT, Codex, Cursor, Windsurf, Zed]
+  - Active Equals account with MCP enabled in the workspace
+  - Node.js installed (only for clients that need the npx mcp-remote bridge)
+  clients_documented:
+  - Claude
+  - Claude Code
+  - ChatGPT
+  - Codex
+  - Cursor
+  - Windsurf
+  - Zed
   metering: MCP and Slack AI calls consume normal Equals AI credits.
-  latency_note: The Equals agent can take 1–5 minutes to answer complex questions; clients must poll rather than time out.
+  latency_note: The Equals agent can take 1–5 minutes to answer complex questions; clients must poll rather
+    than time out.
 deployment:
   mode: remote
   endpoint: https://go.equals.com/api/mcp
-  install: npx -y mcp-remote https://go.equals.com/api/mcp
-  package: https://www.npmjs.com/package/mcp-remote
-  auth: oauth
   verified: probed
-  note: >-
-    mode is remote, not both — the npx command is a third-party bridge (mcp-remote by geelen) that Equals
-    documents for clients lacking native remote-MCP support. Equals publishes no stdio server of its own.
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census
 config_example:
   mcpServers:
     equals:
       command: npx
       args:
-        - -y
-        - mcp-remote
-        - https://go.equals.com/api/mcp
+      - -y
+      - mcp-remote
+      - https://go.equals.com/api/mcp
 cli_example: claude mcp add --transport http equals https://go.equals.com/api/mcp
 tools:
-  - name: workbook_discovery
-    description: Search and list workbooks by name or content; surface curated, team-trusted analyses that are ranked first as the most reliable sources.
-    schema: auth-gated
-  - name: datasource_querying
-    description: List connected datasources, explore their schemas, and execute SQL queries directly.
-    schema: auth-gated
-  - name: natural_language_analysis
-    description: >-
-      Ask Equals — questions about data in natural language across all accessible datasources and
-      workbooks. The agent runs its own analysis, supports follow-ups in one conversation, and can return
-      a full workbook. Consumes Equals AI credits.
-    schema: auth-gated
-tools_note: >-
-  These are capability names summarized from the "What You Can Do" section of the published Equals MCP
-  documentation, NOT identifiers returned by the live server. tools/list is OAuth-gated (see probe
-  below), so the real tool identifiers and inputSchemas require authenticated introspection.
+- name: workbook_discovery
+  description: Search and list workbooks by name or content; surface curated, team-trusted analyses that
+    are ranked first as the most reliable sources.
+  schema: auth-gated
+- name: datasource_querying
+  description: List connected datasources, explore their schemas, and execute SQL queries directly.
+  schema: auth-gated
+- name: natural_language_analysis
+  description: Ask Equals — questions about data in natural language across all accessible datasources
+    and workbooks. The agent runs its own analysis, supports follow-ups in one conversation, and can return
+    a full workbook. Consumes Equals AI credits.
+  schema: auth-gated
+tools_note: These are capability names summarized from the "What You Can Do" section of the published
+  Equals MCP documentation, NOT identifiers returned by the live server. tools/list is OAuth-gated (see
+  probe below), so the real tool identifiers and inputSchemas require authenticated introspection.
 probe:
   url: https://go.equals.com/api/mcp
-  method: 'POST tools/list (jsonrpc 2.0)'
+  method: POST tools/list (jsonrpc 2.0)
   http_status: 401
   body: '{"jsonrpc":"2.0","id":null,"error":{"code":-32000,"message":"Unauthorized"}}'
-  www_authenticate: 'Bearer realm="Equals", resource_metadata="https://go.equals.com/.well-known/oauth-protected-resource"'
+  www_authenticate: Bearer realm="Equals", resource_metadata="https://go.equals.com/.well-known/oauth-protected-resource"
   result: gated
   checked: '2026-08-14'
 secondary_surfaces:
-  - name: equals-docs
-    kind: documentation-search MCP
-    manifest: well-known/equals-docs-mcp.json
-    manifest_url: https://docs.equals.com/.well-known/mcp.json
-    endpoint: https://equals.main-kill-isr.mintlify.me/mcp
-    transport: http
-    auth: none
-    verified: probed
-    probe_status: 200
-    tools:
-      - {name: search_concepts, description: Search the Equals documentation, inputs: [query]}
-      - {name: query_docs_filesystem_concepts, description: Read-only shell-like queries over a virtual filesystem of the docs pages, inputs: [command]}
-      - {name: submit_feedback, description: Submit documentation feedback, inputs: [path, feedback]}
-    note: >-
-      Mintlify-generated and Mintlify-hosted (the endpoint is a mintlify.me domain, not an
-      Equals-controlled host), advertised from a manifest Equals does serve at docs.equals.com. It
-      searches documentation only — it cannot reach a workspace, a workbook or a datasource. Recorded as
-      a secondary surface so it is never mistaken for the Equals product MCP server above.
-    checked: '2026-08-14'
+- name: equals-docs
+  kind: documentation-search MCP
+  manifest: well-known/equals-docs-mcp.json
+  manifest_url: https://docs.equals.com/.well-known/mcp.json
+  endpoint: https://equals.main-kill-isr.mintlify.me/mcp
+  transport: http
+  auth: none
+  verified: probed
+  probe_status: 200
+  tools:
+  - name: search_concepts
+    description: Search the Equals documentation
+    inputs:
+    - query
+  - name: query_docs_filesystem_concepts
+    description: Read-only shell-like queries over a virtual filesystem of the docs pages
+    inputs:
+    - command
+  - name: submit_feedback
+    description: Submit documentation feedback
+    inputs:
+    - path
+    - feedback
+  note: Mintlify-generated and Mintlify-hosted (the endpoint is a mintlify.me domain, not an Equals-controlled
+    host), advertised from a manifest Equals does serve at docs.equals.com. It searches documentation
+    only — it cannot reach a workspace, a workbook or a datasource. Recorded as a secondary surface so
+    it is never mistaken for the Equals product MCP server above.
+  checked: '2026-08-14'

@@ -60,6 +60,7 @@ tags:
 - Revenue Operations
 - Reporting
 - MCP
+- A2A
 apis:
 - name: Equals MCP Server
   description: Hosted, remote Model Context Protocol server that gives AI assistants direct access to
@@ -72,7 +73,7 @@ apis:
   baseURL: https://go.equals.com/api/mcp
   tags:
   - MCP
-  - agent-native
+  - Agent-Native
   - Analytics
   - Business Intelligence
   - SQL
@@ -205,3 +206,10 @@ x-enrichment:
     + RFC 9728 OAuth discovery documents on go.equals.com, a dated changelog at equals.com/launches/,
     full published pricing, and a SOC 2 Type II claim. The Mintlify sample spec served at docs.equals.com/api-reference/openapi.json
     ("OpenAPI Plant Store", servers http://sandbox.mintlify.com) was REJECTED as not belonging to Equals.
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://docs.equals.com/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404

@@ -152,15 +152,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    MemoryList:
-      type: object
-      properties:
-        memories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Memory'
-      required:
-      - memories
     Memory:
       type: object
       description: A fact the Equals AI analyst remembers about the workspace.
@@ -188,15 +179,15 @@ components:
       - content
       - created_at
       - updated_at
-    MemoryWrite:
+    MemoryList:
       type: object
-      description: The writable fields of a memory.
       properties:
-        content:
-          type: string
-          description: Required. The memory to remember.
+        memories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Memory'
       required:
-      - content
+      - memories
     Error:
       type: object
       description: The Equals error envelope.
@@ -207,21 +198,18 @@ components:
           example: Unauthorized
       required:
       - error
+    MemoryWrite:
+      type: object
+      description: The writable fields of a memory.
+      properties:
+        content:
+          type: string
+          description: Required. The memory to remember.
+      required:
+      - content
   responses:
-    NotFound:
-      description: No memory with that id in the workspace.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Forbidden:
       description: The token's user is no longer a member of the workspace.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unprocessable:
-      description: Invalid request — for example, creating a memory with empty content.
       content:
         application/json:
           schema:
@@ -234,6 +222,18 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             error: Unauthorized
+    Unprocessable:
+      description: Invalid request — for example, creating a memory with empty content.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No memory with that id in the workspace.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

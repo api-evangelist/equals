@@ -50,6 +50,10 @@ specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-09-16'
 image: https://avatars.githubusercontent.com/u/16228084?v=4
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
+x-docs-hosting: vercel
 tags:
 - Company
 - Analytics

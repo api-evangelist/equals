@@ -104,3 +104,16 @@ secondary_surfaces:
     only — it cannot reach a workspace, a workbook or a datasource. Recorded as a secondary surface so
     it is never mistaken for the Equals product MCP server above.
   checked: '2026-08-14'
+rfc9728:
+  endpoint: https://go.equals.com/api/mcp
+  metadata_url: https://go.equals.com/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://go.equals.com/api/mcp
+    authorization_servers:
+    - https://go.equals.com
+    bearer_methods_supported:
+    - header

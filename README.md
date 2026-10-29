@@ -64,6 +64,123 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Equals is a company surfaced as a portfolio company of a16z, craft-ventures and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Equals is an AI analytics platform that builds trusted spreadsheets and dashboards for revenue operations and go-to-market teams. It connects directly to databases and SaaS tools — PostgreSQL, MySQL, BigQuery, Snowflake, Redshift, Azure SQL, Supabase, Stripe, Salesforce, HubSpot, Intercom, and more — syncs data into a managed Equals Warehouse powered by Snowflake, and layers a familiar spreadsheet calculation, pivot, and charting surface with AI-powered querying on top. Teams use it to establish a single source of truth for metrics like ARR, pipeline, and retention, then auto-distribute live dashboards to Slack and email. Equals exposes a hosted Model Context Protocol (MCP) server so agents can discover workbooks, query connected datasources, and ask natural-language questions of company data.
 
-Backed by: a16z, craft-ventures — https://equals.app
+**Areas:** Company · Analytics · Spreadsheets · Business Intelligence · Dashboards · Data · Revenue Operations · Reporting · MCP · A2A
+
+## Equals on APIs.io
+
+Everything profiled for Equals is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/equals/](https://apis.io/providers/equals/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Equals MCP Server](https://apis.io/apis/equals/equals-mcp-server/) — Hosted, remote Model Context Protocol server that gives AI assistants direct access to an Equals workspace — search and list workbooks including…
+- [Equals Memories API](https://apis.io/apis/equals/equals-memories-api/) — Facts the Equals AI analyst remembers about a workspace.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [equals](https://apis.io/servers/equals/equals/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Equals Agentic Access](https://apis.io/agentic-access/equals/equals-agentic-access/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Equals Authentication](https://apis.io/security/equals/equals-authentication/)
+- [Equals Domain Security](https://apis.io/security/equals/equals-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Equals Plans Pricing](https://apis.io/plans/equals/equals-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Equals Rate Limits](https://apis.io/rate-limits/equals/equals-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://equals.com)
+- [Documentation](https://docs.equals.com)
+- [Getting started](https://docs.equals.com/docs/getting-started.md)
+- [API reference](https://docs.equals.com/docs/memories-api)
+- [Pricing](https://equals.com/pricing/)
+- [Sign up](https://go.equals.com/)
+- [Support](https://docs.equals.com/docs/resources.md)
+- [Changelog](https://equals.com/launches/)
+- [Compliance](https://docs.equals.com/docs/faq)
+- [Terms of service](https://equals.com/policies/equals-online-terms-and-conditions-GP-april-11-22.pdf)
+- [Privacy policy](https://equals.com/policies/privacy-policy.pdf)
+- [GitHub](https://github.com/EqualsHQ)
+- [Status](https://status.equals.com)
+
+## API Evangelist rating
+
+**Kin Score 49.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 18.1 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 61.9 |
+| Access clarity | 84.2 |
+
+**Agent readiness 57.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/equals/](https://apis.io/providers/equals/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Equals: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/equals/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
